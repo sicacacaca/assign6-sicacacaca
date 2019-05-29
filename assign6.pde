@@ -5,10 +5,6 @@ PImage soldier, robot, dinosaur;
 PImage[][] soilImages, stoneImages;
 PFont font;
 
-Item Cabbage;
-Item Clock;
-Enemy Dinosaur;
-Enemy Robot;
 
 final int GAME_START = 0, GAME_RUN = 1, GAME_OVER = 2, GAME_WIN = 3;
 int gameState = 0;
