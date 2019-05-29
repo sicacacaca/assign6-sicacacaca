@@ -5,6 +5,11 @@ PImage soldier, robot, dinosaur;
 PImage[][] soilImages, stoneImages;
 PFont font;
 
+Item Cabbage;
+Item Clock;
+Enemy Dinosaur;
+Enemy Robot;
+
 final int GAME_START = 0, GAME_RUN = 1, GAME_OVER = 2, GAME_WIN = 3;
 int gameState = 0;
 
@@ -150,8 +155,11 @@ void initGame(){
 
 		switch(i){
 			case 0: case 1: enemies[i] = new Soldier(newX, newY);
-			case 2: case 3: // Requirement 4: Create new Dinosaur in row 9 - 16
-			case 4: case 5: // Requirement 5: Create new Robot in row 17 - 25
+      break;
+			case 2: case 3: enemies[i] = new Dinosaur(newX, newY);// Requirement 4: Create new Dinosaur in row 9 - 16
+      break;			      
+      case 4: case 5:  enemies[i] = new Robot(newX, newY);// Requirement 5: Create new Robot in row 17 - 25
+      break;
 		}
 
 
@@ -169,7 +177,10 @@ void initGame(){
 		// 	- Randomly decide if a cabbage or a clock should appear in a random soil every 4 rows (6 items in total)
 		// 	- Create and store cabbages/clocks in the same items array
 		// 	- You can use the above newX/newY to set their position in constructor
-
+  
+  items[i]= (random(1)>0.5)? new Cabbage(newX,newY):new Clock(newX,newY);
+  
+  
 	}
 }
 
@@ -237,7 +248,14 @@ void draw() {
 
 		// Items
 		// Requirement #3: Display and check collision with player for each item in Item[] items
-
+    
+    for(Item i : items){
+      if(i == null) continue;
+      
+      i.display();
+      i.checkCollision(player);
+    }
+    
 		// Player
 
 		player.update();
