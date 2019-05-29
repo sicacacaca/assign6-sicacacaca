@@ -26,7 +26,7 @@ class Robot extends Enemy {
   
 
   void update(){
-    println(this.y-player.y);
+    
     if( -(player.y-this.y) <= PLAYER_DETECT_RANGE_ROW *80 || -(this.y-player.y) >= PLAYER_DETECT_RANGE_ROW*80){
     x+=0;}
     else{
