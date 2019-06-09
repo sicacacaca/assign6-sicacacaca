@@ -28,14 +28,22 @@ class Robot extends Enemy {
   void update(){
     
     if( -(player.y-this.y) <= PLAYER_DETECT_RANGE_ROW *80 || -(this.y-player.y) >= PLAYER_DETECT_RANGE_ROW*80){
-    x+=0;}
-    else{
-    x += speed;
+      if( speed>0 && player.x>this.x){
+      this.x+=0;}
+      else if(speed<0 && player.x<this.x){
+      this.x+=0;}
+      else{
+      this.x += speed;
     }
-    
-        if(x+80 >= width || x<=0){
-      speed*=-1;
+    }else{
+      this.x += speed;
     }
+
+        if(x+80 >= width ){
+      speed=-1;
+    }
+    if(x<0){
+    speed=1;}
   }
 
   Robot(float x, float y){
